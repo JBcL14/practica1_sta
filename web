@@ -1,3 +1,186 @@
-Fichero web
-Rama web
-Segundo cambio en archivo web
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignatura STA</title>
+    <style>
+        /* CSS Integrado */
+        :root {
+            --color-text: #333;
+            --color-btn: #ff4757;
+            --color-btn-hover: #ff6b81;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Fondo colorido animado */
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--color-btn);
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            color: var(--color-text);
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* Animación flotante para el SVG */
+        .svg-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Botón interactivo */
+        button {
+            background-color: var(--color-btn);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        button:hover {
+            background-color: var(--color-btn-hover);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Clase dinámica para JS */
+        .spin-fast {
+            animation: spin 1s linear infinite !important;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        
+        #mensajeOculto {
+            display: none;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #2ed573;
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- SVG Sencillo (Icono de red/tecnología/átomo) -->
+        <div class="svg-icon" id="staIcon">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#ff4757" stroke-width="4" stroke-dasharray="10 5"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#3742fa" stroke-width="3" opacity="0.6"/>
+                <circle cx="50" cy="50" r="10" fill="#ffa502"/>
+                <circle cx="20" cy="50" r="5" fill="#2ed573"/>
+                <circle cx="80" cy="50" r="5" fill="#2ed573"/>
+                <circle cx="50" cy="20" r="5" fill="#2ed573"/>
+                <circle cx="50" cy="80" r="5" fill="#2ed573"/>
+                <path d="M25 50 L40 50 M60 50 L75 50 M50 25 L50 40 M50 60 L50 75" stroke="#2ed573" stroke-width="2"/>
+            </svg>
+        </div>
+
+        <h1>STA</h1>
+        <p>Bienvenido al portal oficial de la asignatura. Aprende, explora y desarrolla tus habilidades.</p>
+        
+        <button id="btnAccion">Activar Sistema</button>
+        
+        <div id="mensajeOculto">¡Sistema activado con éxito, a por el 10! 🚀</div>
+    </div>
+
+    <script>
+        // JS Integrado
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnAccion = document.getElementById('btnAccion');
+            const svgIcon = document.getElementById('staIcon');
+            const mensajeOculto = document.getElementById('mensajeOculto');
+            
+            let activado = false;
+
+            btnAccion.addEventListener('click', () => {
+                if (!activado) {
+                    // Cambiar el SVG para que gire rápido
+                    svgIcon.classList.add('spin-fast');
+                    
+                    // Mostrar mensaje
+                    mensajeOculto.style.display = 'block';
+                    
+                    // Cambiar aspecto del botón
+                    btnAccion.textContent = '¡Desactivar!';
+                    btnAccion.style.backgroundColor = '#2ed573';
+                    btnAccion.style.boxShadow = '0 5px 15px rgba(46, 213, 115, 0.4)';
+                    
+                    activado = true;
+                } else {
+                    // Volver a la normalidad
+                    svgIcon.classList.remove('spin-fast');
+                    mensajeOculto.style.display = 'none';
+                    
+                    btnAccion.textContent = 'Activar Sistema';
+                    btnAccion.style.backgroundColor = 'var(--color-btn)';
+                    btnAccion.style.boxShadow = '0 5px 15px rgba(255, 71, 87, 0.4)';
+                    
+                    activado = false;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
